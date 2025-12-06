@@ -1,5 +1,6 @@
 import math
 
+
 class formula:
     def __init__(self):
         self._level = 1
@@ -12,89 +13,106 @@ class formula:
     @property
     def value(self):
         return self._level * math.pow((math.ldexp(self._potential, self._rebirths) * math.factorial(self._saint_help_lvl)), (self._hellish_help_lvl / self._hell_curse_lvl))
-    
+
     def parts(self):
         result = {
-        "lvl" : self._level,
-        "potential" : self._potential,
-        "rebirth" : self._rebirths,
-        "holy" : self._saint_help_lvl,
-        "hellG" : self._hellish_help_lvl,
-        "hellC" : self._hell_curse_lvl
+            "lvl": self._level,
+            "potential": self._potential,
+            "rebirth": self._rebirths,
+            "holy": self._saint_help_lvl,
+            "hellG": self._hellish_help_lvl,
+            "hellC": self._hell_curse_lvl
         }
         return result
-    
+
     def show(self):
         nums = self.parts()
         print(f"Level : {nums['lvl']}\nPotential : {nums['potential']}\nRebirths : {nums['rebirth']}\nSaint gift level : {nums['holy']}\nSatan gift level : {nums['hellG']}\nSatan curse level : {nums['hellC']}")
-    
+
     @property
     def level(self):
         return self._level
-    
+
     @level.setter
     def level(self, value):
-        if value == -1:
-            self._level = 1
-        elif value > 0 and isinstance(value, int):
-            self._level = value
-            
+        if can_int(value):
+            if not isinstance(value, int):
+                value = int(value)
+            if value == -1:
+                self._level = 1
+            elif value > 0 and isinstance(value, int):
+                self._level = value
+
     @property
     def potential(self):
         return self._potential
-    
+
     @potential.setter
     def potential(self, value):
-        if value == -1:
-            self._potential = 1
-        elif value > 0 and isinstance(value, int):
-            self._potential = value
-    
+        if can_int(value):
+            if not isinstance(value, int):
+                value = int(value)
+            if value == -1:
+                self._potential = 1
+            elif value > 0 and isinstance(value, int):
+                self._potential = value
+
     @property
     def rebirths(self):
         return self._rebirths
-    
+
     @rebirths.setter
     def rebirths(self, value):
-        if value == -1:
-            self._rebirths = 0
-        elif value >= 0 and isinstance(value, int):
-            self._rebirths = value
-            
+        if can_int(value):
+            if not isinstance(value, int):
+                value = int(value)
+            if value == -1:
+                self._rebirths = 0
+            elif value > 0 and isinstance(value, int):
+                self._rebirths = value
+
     @property
     def saint_help_lvl(self):
         return self._saint_help_lvl
-    
+
     @saint_help_lvl.setter
     def saint_help_lvl(self, value):
-        if value == -1:
-            self._saint_help_lvl = 1
-        elif value > 0 and isinstance(value, int):
-            self._saint_help_lvl = value
-            
+        if can_int(value):
+            if not isinstance(value, int):
+                value = int(value)
+            if value == -1:
+                self._saint_help_lvl = 1
+            elif value > 0 and isinstance(value, int):
+                self._saint_help_lvl = value
+
     @property
     def hellish_help_lvl(self):
         return self._hellish_help_lvl
-    
+
     @hellish_help_lvl.setter
     def hellish_help_lvl(self, value):
-        if value == -1:
-            self._hellish_help_lvl = 1
-        elif value > 0 and isinstance(value, int):
-            self._hellish_help_lvl = value
-    
+        if can_int(value):
+            if not isinstance(value, int):
+                value = int(value)
+            if value == -1:
+                self._hellish_help_lvl = 1
+            elif value > 0 and isinstance(value, int):
+                self._hellish_help_lvl = value
+
     @property
-    def hellish_curse_lvl(self = 1):
+    def hellish_curse_lvl(self):
         return self._hell_curse_lvl
 
     @hellish_curse_lvl.setter
     def hellish_curse_lvl(self, value):
-        if value == -1:
-            self._hell_curse_lvl = 1
-        elif value > 0 and isinstance(value, int):
-            self._hell_curse_lvl = value
-    
-    
+        if can_int(value):
+            if not isinstance(value, int):
+                value = int(value)
+            if value == -1:
+                self._hell_curse_lvl = 1
+            elif value > 0 and isinstance(value, int):
+                self._hell_curse_lvl = value
+
 
 def get_val(text):
     res = input(text + ": ")
@@ -103,12 +121,14 @@ def get_val(text):
     else:
         return -1
 
+
 def can_int(value):
     try:
         int(value)
         return True
     except ValueError:
         return False
+
 
 if __name__ == "__main__":
     formule = formula()
