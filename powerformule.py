@@ -1,4 +1,5 @@
 import math
+from numtransform import transformer
 
 
 class formula:
@@ -9,10 +10,24 @@ class formula:
         self._saint_help_lvl = 1
         self._hellish_help_lvl = 1
         self._hell_curse_lvl = 1
+        self._transr = transformer()
+        self._power = 0
 
     @property
     def value(self):
-        return self._level * math.pow((math.ldexp(self._potential, self._rebirths) * math.factorial(self._saint_help_lvl)), (self._hellish_help_lvl / self._hell_curse_lvl))
+        return self._power
+
+    def calc(self):
+        self._power = (self._level * self._potential * (2 ** self._rebirths) * math.factorial(self._saint_help_lvl)) ** (self._hellish_help_lvl / self._hell_curse_lvl)
+
+    @property
+    def correct_value(self):
+        self._transr.check(self._power)
+        return round(self.value / self._transr.less, 2)
+
+    @property
+    def transformer(self):
+        return self._transr
 
     def parts(self):
         result = {
@@ -68,7 +83,7 @@ class formula:
                 value = int(value)
             if value == -1:
                 self._rebirths = 0
-            elif value > 0 and isinstance(value, int):
+            elif value >= 0 and isinstance(value, int):
                 self._rebirths = value
 
     @property

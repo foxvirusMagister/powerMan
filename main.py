@@ -14,7 +14,8 @@ def main():
         form.saint_help_lvl = SG_value.get()
         form.hellish_help_lvl = HG_value.get()
         form.hellish_curse_lvl = HC_value.get()
-        answer_value.set(form.value)
+        form.calc()
+        answer_value.set(str(form.correct_value) + " " + form.transformer.pre)
 
     root = tk.Tk()
     root.geometry("650x400")
